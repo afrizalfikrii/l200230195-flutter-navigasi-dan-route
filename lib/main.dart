@@ -25,7 +25,6 @@ class Book {
   });
 }
 
-// Data Buku dengan Warna Solid yang Elegan (Tidak Alay)
 final List<Book> bookList = [
   const Book(
     title: 'Think Python',
@@ -34,7 +33,7 @@ final List<Book> bookList = [
         'Buku pengantar pemrograman Python yang cocok untuk pemula. Membahas konsep dasar programming menggunakan bahasa Python dengan pendekatan yang mudah dipahami.',
     pdfAsset: 'assets/pdf/thinkpython2.pdf',
     icon: Icons.integration_instructions_outlined,
-    themeColor: Color(0xFF2B5B84), // Muted Deep Blue
+    themeColor: Color(0xFF2B5B84),
     category: 'Programming',
   ),
   const Book(
@@ -44,7 +43,7 @@ final List<Book> bookList = [
         'Panduan lengkap untuk menguasai command line Linux. Buku ini membahas shell scripting, file management, dan berbagai tools penting di Linux.',
     pdfAsset: 'assets/pdf/thelinuxcommandline.pdf',
     icon: Icons.terminal_rounded,
-    themeColor: Color(0xFF2C2C2E), // Dark Charcoal
+    themeColor: Color(0xFF2C2C2E),
     category: 'Operating System',
   ),
   const Book(
@@ -54,7 +53,7 @@ final List<Book> bookList = [
         'Buku referensi utama untuk Git version control. Membahas dari dasar hingga fitur-fitur lanjutan seperti branching, merging, dan workflow kolaborasi.',
     pdfAsset: 'assets/pdf/progit.pdf',
     icon: Icons.merge_type_rounded,
-    themeColor: Color(0xFFD6563F), // Soft Terracotta
+    themeColor: Color(0xFFD6563F),
     category: 'Version Control',
   ),
   const Book(
@@ -129,7 +128,6 @@ final List<Book> bookList = [
   ),
 ];
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -195,12 +193,9 @@ class MyHomePage extends StatelessWidget {
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  return _MinimalistBookCard(book: bookList[index]);
-                },
-                childCount: bookList.length,
-              ),
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return _MinimalistBookCard(book: bookList[index]);
+              }, childCount: bookList.length),
             ),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
@@ -221,7 +216,11 @@ class MyHomePage extends StatelessWidget {
               child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.auto_stories_rounded, color: Colors.black87, size: 36),
+                  Icon(
+                    Icons.auto_stories_rounded,
+                    color: Colors.black87,
+                    size: 36,
+                  ),
                   SizedBox(height: 16),
                   Text(
                     'Menu',
@@ -237,43 +236,67 @@ class MyHomePage extends StatelessWidget {
             ),
             const Divider(height: 1, color: Colors.black12),
             const SizedBox(height: 16),
-            _buildDrawerItem(context, Icons.explore_outlined, 'Discover', () => Navigator.pop(context)),
+            _buildDrawerItem(
+              context,
+              Icons.explore_outlined,
+              'Discover',
+              () => Navigator.pop(context),
+            ),
             const Padding(
-               padding: EdgeInsets.only(left: 24, top: 32, bottom: 12),
-               child: Text(
-                 'EXAMPLES',
-                 style: TextStyle(
-                   fontSize: 12,
-                   fontWeight: FontWeight.w700,
-                   color: Colors.black45,
-                   letterSpacing: 1.5,
-                 ),
-               ),
+              padding: EdgeInsets.only(left: 24, top: 32, bottom: 12),
+              child: Text(
+                'EXAMPLES',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black45,
+                  letterSpacing: 1.5,
+                ),
+              ),
             ),
             _buildDrawerItem(context, Icons.code_rounded, 'If / Else', () {
               Navigator.pop(context);
               Navigator.pushNamed(context, '/if-else');
             }),
-            _buildDrawerItem(context, Icons.account_tree_outlined, 'Switch / Case', () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/switch-case');
-            }),
-            _buildDrawerItem(context, Icons.all_inclusive_rounded, 'While / Do', () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/while-do');
-            }),
+            _buildDrawerItem(
+              context,
+              Icons.account_tree_outlined,
+              'Switch / Case',
+              () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/switch-case');
+              },
+            ),
+            _buildDrawerItem(
+              context,
+              Icons.all_inclusive_rounded,
+              'While / Do',
+              () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/while-do');
+              },
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildDrawerItem(BuildContext context, IconData icon, String title, VoidCallback onTap) {
+  Widget _buildDrawerItem(
+    BuildContext context,
+    IconData icon,
+    String title,
+    VoidCallback onTap,
+  ) {
     return ListTile(
       leading: Icon(icon, color: Colors.black87, size: 22),
       title: Text(
         title,
-        style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16, color: Colors.black87),
+        style: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+          color: Colors.black87,
+        ),
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 24),
       onTap: onTap,
@@ -315,7 +338,6 @@ class _MinimalistBookCard extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Cover Icon
                 Hero(
                   tag: 'cover_${book.title}',
                   child: Container(
@@ -331,7 +353,6 @@ class _MinimalistBookCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 16),
-                // Text Content
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -371,10 +392,12 @@ class _MinimalistBookCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Arrow
                 Padding(
                   padding: const EdgeInsets.only(top: 36),
-                  child: Icon(Icons.chevron_right_rounded, color: Colors.black.withAlpha(40)),
+                  child: Icon(
+                    Icons.chevron_right_rounded,
+                    color: Colors.black.withAlpha(40),
+                  ),
                 ),
               ],
             ),
@@ -399,8 +422,8 @@ class BookDetailPage extends StatelessWidget {
         elevation: 0,
         scrolledUnderElevation: 0,
         leading: IconButton(
-           icon: const Icon(Icons.arrow_back_rounded, color: Colors.black87),
-           onPressed: () => Navigator.pop(context),
+          icon: const Icon(Icons.arrow_back_rounded, color: Colors.black87),
+          onPressed: () => Navigator.pop(context),
         ),
       ),
       body: SingleChildScrollView(
@@ -409,7 +432,6 @@ class BookDetailPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Center Header
             Center(
               child: Column(
                 children: [
@@ -423,7 +445,11 @@ class BookDetailPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Center(
-                         child: Icon(book.icon, size: 64, color: book.themeColor),
+                        child: Icon(
+                          book.icon,
+                          size: 64,
+                          color: book.themeColor,
+                        ),
                       ),
                     ),
                   ),
@@ -462,7 +488,6 @@ class BookDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 48),
-            // Description
             const Text(
               'About this book',
               style: TextStyle(
@@ -481,15 +506,16 @@ class BookDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 64),
-            // Button
             SizedBox(
               width: double.infinity,
               height: 56,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
-                     context,
-                     MaterialPageRoute(builder: (context) => PdfViewerPage(book: book)),
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PdfViewerPage(book: book),
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -551,10 +577,6 @@ class PdfViewerPage extends StatelessWidget {
   }
 }
 
-// -------------------------------------------------------------
-// COMPONENT PAGES (PRESERVED EXAMPLES)
-// -------------------------------------------------------------
-
 class IfElsePage extends StatefulWidget {
   const IfElsePage({super.key});
   @override
@@ -591,7 +613,10 @@ class _IfElsePageState extends State<IfElsePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("If / Else", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
+        title: const Text(
+          "If / Else",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+        ),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black87,
         elevation: 0,
@@ -608,7 +633,9 @@ class _IfElsePageState extends State<IfElsePage> {
             TextField(
               decoration: InputDecoration(
                 labelText: "Masukkan Nilai (0-100)",
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
               keyboardType: TextInputType.number,
               onChanged: (value) => nilai = int.tryParse(value) ?? 0,
@@ -621,9 +648,14 @@ class _IfElsePageState extends State<IfElsePage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF1E1E1E),
                   elevation: 0,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
-                child: const Text("Cek Hasil", style: TextStyle(color: Colors.white, fontSize: 16)),
+                child: const Text(
+                  "Cek Hasil",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
               ),
             ),
             const SizedBox(height: 32),
@@ -637,7 +669,11 @@ class _IfElsePageState extends State<IfElsePage> {
               child: Text(
                 "Hasil: \n$hasil",
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, height: 1.6),
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  height: 1.6,
+                ),
               ),
             ),
           ],
@@ -691,7 +727,10 @@ class _SwitchCasePageState extends State<SwitchCasePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Switch / Case", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
+        title: const Text(
+          "Switch / Case",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+        ),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black87,
         elevation: 0,
@@ -708,7 +747,9 @@ class _SwitchCasePageState extends State<SwitchCasePage> {
             TextField(
               decoration: InputDecoration(
                 labelText: "Masukkan Angka Hari (1-7)",
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
               keyboardType: TextInputType.number,
               onChanged: (value) => hari = int.tryParse(value) ?? 0,
@@ -720,15 +761,20 @@ class _SwitchCasePageState extends State<SwitchCasePage> {
                 onPressed: cekHari,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF1E1E1E),
-                   elevation: 0,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
-                child: const Text("Cek Hari", style: TextStyle(color: Colors.white, fontSize: 16)),
+                child: const Text(
+                  "Cek Hari",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
               ),
             ),
             const SizedBox(height: 32),
             Container(
-               padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(color: Colors.black12),
@@ -737,7 +783,11 @@ class _SwitchCasePageState extends State<SwitchCasePage> {
               child: Text(
                 "Nama Hari: \n$namaHari",
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, height: 1.6),
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  height: 1.6,
+                ),
               ),
             ),
           ],
@@ -777,7 +827,10 @@ class _WhileDoPageState extends State<WhileDoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("While / Do", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18)),
+        title: const Text(
+          "While / Do",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+        ),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black87,
         elevation: 0,
@@ -797,7 +850,9 @@ class _WhileDoPageState extends State<WhileDoPage> {
                   child: TextField(
                     decoration: InputDecoration(
                       labelText: "Min",
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                     keyboardType: TextInputType.number,
                     onChanged: (value) => minVal = int.tryParse(value) ?? 0,
@@ -808,7 +863,9 @@ class _WhileDoPageState extends State<WhileDoPage> {
                   child: TextField(
                     decoration: InputDecoration(
                       labelText: "Max",
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                     keyboardType: TextInputType.number,
                     onChanged: (value) => maxVal = int.tryParse(value) ?? 0,
@@ -820,7 +877,9 @@ class _WhileDoPageState extends State<WhileDoPage> {
             TextField(
               decoration: InputDecoration(
                 labelText: "Step",
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
               keyboardType: TextInputType.number,
               onChanged: (value) => stepVal = int.tryParse(value) ?? 1,
@@ -832,17 +891,22 @@ class _WhileDoPageState extends State<WhileDoPage> {
                 onPressed: jalankanLoop,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF1E1E1E),
-                   elevation: 0,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
-                child: const Text("Jalankan Loop", style: TextStyle(color: Colors.white, fontSize: 16)),
+                child: const Text(
+                  "Jalankan Loop",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
               ),
             ),
             const SizedBox(height: 32),
             if (angka.isNotEmpty)
               Container(
                 padding: const EdgeInsets.all(20),
-                 decoration: BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(color: Colors.black12),
                   borderRadius: BorderRadius.circular(12),
@@ -851,7 +915,11 @@ class _WhileDoPageState extends State<WhileDoPage> {
                   children: [
                     const Text(
                       "Hasil Perulangan:",
-                      style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: Colors.black54),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                        color: Colors.black54,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     Wrap(
@@ -859,14 +927,25 @@ class _WhileDoPageState extends State<WhileDoPage> {
                       runSpacing: 12,
                       alignment: WrapAlignment.center,
                       children: angka
-                          .map((n) => Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFF0F0F0),
-                                  borderRadius: BorderRadius.circular(8),
+                          .map(
+                            (n) => Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFF0F0F0),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                n.toString(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
                                 ),
-                                child: Text(n.toString(), style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
-                              ))
+                              ),
+                            ),
+                          )
                           .toList(),
                     ),
                   ],
