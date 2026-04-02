@@ -57,7 +57,78 @@ final List<Book> bookList = [
     themeColor: Color(0xFFD6563F), // Soft Terracotta
     category: 'Version Control',
   ),
+  const Book(
+    title: 'Clean Code',
+    author: 'Robert C. Martin',
+    description:
+        'Panduan menulis kode yang bersih, mudah dibaca, dan mudah dipelihara. Buku ini sangat populer di kalangan software developer profesional.',
+    pdfAsset: 'assets/pdf/cleancode.pdf',
+    icon: Icons.auto_fix_high_rounded,
+    themeColor: Color(0xFF3D6B4F),
+    category: 'Best Practice',
+  ),
+  const Book(
+    title: 'The Pragmatic Programmer',
+    author: 'Andrew Hunt & David Thomas',
+    description:
+        'Buku klasik yang membahas cara berpikir dan bekerja layaknya programmer profesional. Penuh dengan tips praktis dan filosofi pengembangan software.',
+    pdfAsset: 'assets/pdf/pragmaticprogrammer.pdf',
+    icon: Icons.lightbulb_outline_rounded,
+    themeColor: Color(0xFF7A5230),
+    category: 'Career',
+  ),
+  const Book(
+    title: 'Introduction to Algorithms',
+    author: 'Cormen, Leiserson, Rivest & Stein',
+    description:
+        'Buku referensi utama algoritma dan struktur data yang digunakan di kampus-kampus terkemuka dunia. Membahas topik dari sorting hingga graph algorithms.',
+    pdfAsset: 'assets/pdf/introalgorithms.pdf',
+    icon: Icons.account_tree_outlined,
+    themeColor: Color(0xFF1A3A5C),
+    category: 'Algorithm',
+  ),
+  const Book(
+    title: 'Design Patterns',
+    author: 'Gang of Four',
+    description:
+        'Buku pola desain software yang menjadi standar industri. Memperkenalkan 23 design pattern yang sering dipakai dalam pengembangan software berorientasi objek.',
+    pdfAsset: 'assets/pdf/designpatterns.pdf',
+    icon: Icons.dashboard_customize_outlined,
+    themeColor: Color(0xFF5B3A6E),
+    category: 'Architecture',
+  ),
+  const Book(
+    title: 'Eloquent JavaScript',
+    author: 'Marijn Haverbeke',
+    description:
+        'Pengantar modern untuk bahasa JavaScript dan pemrograman web. Membahas dasar bahasa, DOM, Node.js, dan berbagai konsep penting lainnya secara mendalam.',
+    pdfAsset: 'assets/pdf/eloquentjavascript.pdf',
+    icon: Icons.javascript_rounded,
+    themeColor: Color(0xFF8A6A00),
+    category: 'Web Development',
+  ),
+  const Book(
+    title: 'Operating Systems: Three Easy Pieces',
+    author: 'Remzi & Andrea Arpaci-Dusseau',
+    description:
+        'Buku teks sistem operasi yang membahas tiga konsep utama: virtualisasi, concurrency, dan persistence. Ditulis dengan gaya yang mudah dipahami.',
+    pdfAsset: 'assets/pdf/ostep.pdf',
+    icon: Icons.memory_rounded,
+    themeColor: Color(0xFF2E4A3E),
+    category: 'Operating System',
+  ),
+  const Book(
+    title: 'Computer Networking: A Top-Down Approach',
+    author: 'Kurose & Ross',
+    description:
+        'Buku jaringan komputer paling banyak digunakan di perguruan tinggi. Membahas protokol jaringan dari lapisan aplikasi hingga lapisan fisik.',
+    pdfAsset: 'assets/pdf/computernetworking.pdf',
+    icon: Icons.lan_outlined,
+    themeColor: Color(0xFF1E4D7B),
+    category: 'Networking',
+  ),
 ];
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -100,16 +171,17 @@ class MyHomePage extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
-            expandedHeight: 120,
             floating: false,
             pinned: true,
             backgroundColor: const Color(0xFFF9F9FB),
             elevation: 0,
             scrolledUnderElevation: 0.5,
             iconTheme: const IconThemeData(color: Colors.black87),
-            flexibleSpace: FlexibleSpaceBar(
-              titlePadding: const EdgeInsets.only(left: 24, bottom: 16),
-              title: Text(
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
+              child: Text(
                 title,
                 style: const TextStyle(
                   fontWeight: FontWeight.w800,
@@ -121,7 +193,7 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
